@@ -23,19 +23,25 @@ docker system prune # just nuke everything
 docker image rm <image>
 
 # Download
-docker image pull <name> # download an image without running it from docker registry
+docker image pull <name>:<tag> # download an image without running it from docker registry, if tag is omitted, defaults to latest release
 
 # Run
-docker container run <container> # download and run a container, use -d flag before name to detach
+docker container run <container> <args> # download and run a container, use -d flag before name to detach, args used to execute commands
 docker container exec <container> # executes a command inside the container 
 
 # Stop
 docker container stop <name> # stop a container of a given name
 
+# Tag
+docker tag ubuntu:18.04 <name>:<tag> # create a custom tag for ubuntu 18.04 and renames the image
+
 # Flags
 -i (interactive)
 -t (tty)
 -d (detached)
+
+# Docker build
+docker build . -t hello-docker # builds a docker image named "hello-docker" from current directory Dockerfile
 
 ```
 ### From DevOps with Docker 2021 course material
@@ -50,7 +56,7 @@ docker container stop <name> # stop a container of a given name
 | docker container stop \<container\> | Stops a container                       | docker stop    |
 | docker container exec \<container\> | Executes a command inside the container | docker exec    |
 
-## Ubuntu
+## Ubuntu and other linux distros
 
 ```shell
  docker run -it ubuntu # run ubuntu with terminal and input enabled
@@ -67,4 +73,8 @@ docker container stop <name> # stop a container of a given name
  docker rm looper 
  
  docker run -d --rm -it --name looper-it ubuntu sh -c 'while true; do date; sleep 1; done' # --rm removes looper after it exits
+ 
+ docker cp path/to/file.extension <name>:/path/to/destination # copy a file inside dockerized linux
+ docker diff <name> # what has changed inside container linux
+ docker commit <name> <image> # commit changes to a new image, maybe not that useful because of dockerfile
 ```
