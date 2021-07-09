@@ -1,3 +1,8 @@
+# Useful commands for docker, for those who forget easily
+
+Such as me :)
+
+## Basic commands
 ```shell
 
 # Finding containers
@@ -33,7 +38,7 @@ docker container stop <name> # stop a container of a given name
 -d (detached)
 
 ```
-### From Course material
+### From DevOps with Docker 2021 course material
 | command                             | explain                                 | shorthand      |
 |-------------------------------------|-----------------------------------------|----------------|
 | docker image ls                     | Lists all images                        | docker images  |
@@ -44,3 +49,22 @@ docker container stop <name> # stop a container of a given name
 | docker container rm \<container\>   | Removes a container                     | docker rm      |
 | docker container stop \<container\> | Stops a container                       | docker stop    |
 | docker container exec \<container\> | Executes a command inside the container | docker exec    |
+
+## Ubuntu
+
+```shell
+ docker run -it ubuntu # run ubuntu with terminal and input enabled
+ docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done' # run ubuntu container named "looper" with a shell script
+ docker logs -f looper # show logs from that container
+ docker pause looper # pause looper
+ docker unpause looper # unpause looper
+ docker attach looper # attach looper to your terminal
+ docker attach --no-stdin looper # attach looper to your terminal, but without std in
+ docker exec -it looper bash # enter looper container with terminal and input enabled
+ 
+ # equivalent to running docker rm --force looper
+ docker kill looper 
+ docker rm looper 
+ 
+ docker run -d --rm -it --name looper-it ubuntu sh -c 'while true; do date; sleep 1; done' # --rm removes looper after it exits
+```
