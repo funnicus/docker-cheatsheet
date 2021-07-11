@@ -43,6 +43,11 @@ docker tag ubuntu:18.04 <name>:<tag> # create a custom tag for ubuntu 18.04 and 
 # Docker build
 docker build . -t hello-docker # builds a docker image named "hello-docker" from current directory Dockerfile
 
+# Volume
+docker run -v "$(pwd)/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service # container input in text.log, will also show in text.log in our computer
+
+# Port mapping
+ docker run -p <host-port>:<container-port> <image> # run a container from image and map ports
 ```
 ### From DevOps with Docker 2021 course material
 | command                             | explain                                 | shorthand      |
